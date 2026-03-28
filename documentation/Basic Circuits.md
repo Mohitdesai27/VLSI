@@ -35,15 +35,10 @@ Logic 0
 Logic 1
 High Impedance (Z)
 
-## Bus System
-
+# Bus System
 Tri-state buffers are used in bus-based architectures.
-
-### Problem:
 Multiple devices connected to same line → conflict if all drive simultaneously
 
-### Solution:
-Only one buffer enabled at a time
-Others remain in High-Z
+
 
 	​
