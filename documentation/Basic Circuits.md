@@ -26,7 +26,7 @@ Buffers are used to control timing in digital circuits.
 
 
 
-# Tri-State Buffer
+# 2. Tri-State Buffer
 
 ## Definition
 A tri-state buffer is a digital circuit that has three possible output states:
