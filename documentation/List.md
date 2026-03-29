@@ -39,7 +39,6 @@
 - Parity Checker
 
 ## Other Circuits
-- Code Converters
 - Barrel Shifter
 - Priority Resolver
 - Majority Circuit
