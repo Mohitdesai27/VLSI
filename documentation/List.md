@@ -32,7 +32,7 @@
 - BCD to Excess-3 Converter
 - Excess-3 to BCD Converter
 
-## Comparison & Error Detection
+## Error Detection
 - Parity Generator
 - Parity Checker
 
