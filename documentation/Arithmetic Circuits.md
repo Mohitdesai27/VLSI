@@ -79,6 +79,51 @@ Bout​=A′B+Bin(A′+B)
 
 # 3. Comparator :
 
+## Inputs:
+A, B
+## Outputs:
+G,E,L
+
+## Truth Table:
+| A | B | G (A>B) | E (A=B) | L (A<B) |
+| - | - | ------- | ------- | ------- |
+| 0 | 0 | 0       | 1       | 0       |
+| 0 | 1 | 0       | 0       | 1       |
+| 1 | 0 | 1       | 0       | 0       |
+| 1 | 1 | 0       | 1       | 0       |
+
+K-Map (2-variable)
+
+For 
+𝐺 = 𝐴 > 𝐵  
+| B   | 0 | 1 |
+| --- | - | - |
+| A=0 | 0 | 0 |
+| A=1 | 1 | 0 |
+
+For 
+E = 𝐴 == 𝐵  
+| B   | 0 | 1 |
+| --- | - | - |
+| A=0 | 1 | 0 |
+| A=1 | 0 | 1 |
+
+For 
+E = 𝐴 < 𝐵  
+| B   | 0 | 1 |
+| --- | - | - |
+| A=0 | 0 | 1 |
+| A=1 | 0 | 0 |
+
+## Final Comparator Equations:
+
+ G=AB′
+
+ E=A′B′+AB
+
+ L=A′B
+
+
 # 4. Ripple Carry Adder (4-bit):
 
 ```mermaid
