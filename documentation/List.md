@@ -33,8 +33,6 @@
 - Excess-3 to BCD Converter
 
 ## Comparison & Error Detection
-- Magnitude Comparator
-- Equality Comparator
 - Parity Generator
 - Parity Checker
 
