@@ -5,18 +5,16 @@
 - Tri-state buffer
 
 ## Arithmetic Circuits
-- Half Adder
 - Full Adder
 - Ripple Carry Adder
 - Carry Lookahead Adder
 - Carry Skip Adder
 - Carry Select Adder
-- Binary Adder
-- Half Subtractor
+- Binary Adder (Parameterized)
 - Full Subtractor
 - Adder-Subtractor
-- Binary Multiplier
-- Array Multiplier
+- Booth Multiplier
+- Wallace Multiplier
 - Comparator
 
 ## Data Routing Circuits
