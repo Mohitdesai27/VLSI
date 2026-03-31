@@ -230,9 +230,86 @@ Bout​=A′B+Bin(A′+B)
 
 # 8. Adder Subtactor  (4-bit):
 ```mermaid
+graph LR
+    subgraph Inputs A
+        A0[A0]
+        A1[A1]
+        A2[A2]
+        A3[A3]
+    end
+    subgraph Inputs B
+        B0[B0]
+        B1[B1]
+        B2[B2]
+        B3[B3]
+    end
 
+    subgraph Mode
+        M[M]
+    end
+
+    subgraph XOR_Block["B Modification (B XOR M)"]
+        X0[XOR]
+        X1[XOR]
+        X2[XOR]
+        X3[XOR]
+    end
+
+    subgraph Adder["4-bit Ripple Carry Adder"]
+        FA0[Full Adder 0]
+        FA1[Full Adder 1]
+        FA2[Full Adder 2]
+        FA3[Full Adder 3]
+    end
+
+    subgraph Outputs
+        R0[R0]
+        R1[R1]
+        R2[R2]
+        R3[R3]
+        Cout[Cout]
+    end
+
+    %% B XOR M connections
+    B0 --> X0
+    B1 --> X1
+    B2 --> X2
+    B3 --> X3
+
+    M --> X0
+    M --> X1
+    M --> X2
+    M --> X3
+
+    %% A inputs to adders
+    A0 --> FA0
+    A1 --> FA1
+    A2 --> FA2
+    A3 --> FA3
+
+    %% XOR outputs to adders
+    X0 --> FA0
+    X1 --> FA1
+    X2 --> FA2
+    X3 --> FA3
+
+    %% Carry chain
+    M --> FA0
+    FA0 -->|C1| FA1
+    FA1 -->|C2| FA2
+    FA2 -->|C3| FA3
+
+    %% Outputs
+    FA0 --> R0
+    FA1 --> R1
+    FA2 --> R2
+    FA3 --> R3
+    FA3 --> Cout
 ```
 
+# 9. Booth Mul :
+
+# 10. Wallach Mul :
 
 
 # 11. Comparator :
