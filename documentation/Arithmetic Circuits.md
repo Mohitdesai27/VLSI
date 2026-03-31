@@ -36,95 +36,8 @@ S=A⊕B⊕Cin
 
 Cout​=AB+BCin+ACin
 
-# 2. Full Subtractor :
 
-## Inputs:
-A, B, Bin
-## Outputs:
-Difference (D)
-Borrow (Bout)
-
-## Truth Table:
-
-| A | B | Bin | D | Bout |
-| - | - | --- | - | ---- |
-| 0 | 0 | 0   | 0 | 0    |
-| 0 | 0 | 1   | 1 | 1    |
-| 0 | 1 | 0   | 1 | 1    |
-| 0 | 1 | 1   | 0 | 1    |
-| 1 | 0 | 0   | 1 | 0    |
-| 1 | 0 | 1   | 0 | 0    |
-| 1 | 1 | 0   | 0 | 0    |
-| 1 | 1 | 1   | 1 | 1    |
-
-## Karnaugh maps :
-
-Difference (D)
-| BC  | 00 | 01 | 11 | 10 |
-| --- | -  | -- | -- | -- |
-| A=0 | 0  | 1  | 0  | 1  |
-| A=1 | 1  | 0  | 1  | 0  |
-
-Borrow (Bout) 
-| BC  | 00 | 01 | 11 | 10 |
-| --- | -  | -- | -- | -- |
-| A=0 | 0  | 1  | 1  | 1  |
-| A=1 | 0  | 0  | 1  | 0  |
-
-## Result :
-D=A⊕B⊕Bin
-
-Bout​=A′B+Bin(A′+B)
-
-
-# 3. Comparator :
-
-## Inputs:
-A, B
-## Outputs:
-G,E,L
-
-## Truth Table:
-| A | B | G (A>B) | E (A=B) | L (A<B) |
-| - | - | ------- | ------- | ------- |
-| 0 | 0 | 0       | 1       | 0       |
-| 0 | 1 | 0       | 0       | 1       |
-| 1 | 0 | 1       | 0       | 0       |
-| 1 | 1 | 0       | 1       | 0       |
-
-K-Map (2-variable)
-
-For 
-𝐺 = 𝐴 > 𝐵  
-| B   | 0 | 1 |
-| --- | - | - |
-| A=0 | 0 | 0 |
-| A=1 | 1 | 0 |
-
-For 
-E = 𝐴 == 𝐵  
-| B   | 0 | 1 |
-| --- | - | - |
-| A=0 | 1 | 0 |
-| A=1 | 0 | 1 |
-
-For 
-E = 𝐴 < 𝐵  
-| B   | 0 | 1 |
-| --- | - | - |
-| A=0 | 0 | 1 |
-| A=1 | 0 | 0 |
-
-## Final Comparator Equations:
-
- G=AB′
-
- E=A′B′+AB
-
- L=A′B
-
-
-# 4. Ripple Carry Adder (4-bit):
+# 2. Ripple Carry Adder (4-bit):
 
 ```mermaid
 graph LR
@@ -188,9 +101,14 @@ graph LR
     Full-Adder-3 --> C4
 ```
 
+# 3. Carry  look ahead  Adder (4-bit):
+
+```mermaid
 
 
-# 5. Carry  skip Adder (4-bit):
+```
+
+# 4. Carry  skip Adder (4-bit):
 
 ```mermaid
 
@@ -267,19 +185,112 @@ graph LR
 
 ```
 
-# 6. Carry  look ahead  Adder (4-bit):
 
+# 7. Full Subtractor :
+
+## Inputs:
+A, B, Bin
+## Outputs:
+Difference (D)
+Borrow (Bout)
+
+## Truth Table:
+
+| A | B | Bin | D | Bout |
+| - | - | --- | - | ---- |
+| 0 | 0 | 0   | 0 | 0    |
+| 0 | 0 | 1   | 1 | 1    |
+| 0 | 1 | 0   | 1 | 1    |
+| 0 | 1 | 1   | 0 | 1    |
+| 1 | 0 | 0   | 1 | 0    |
+| 1 | 0 | 1   | 0 | 0    |
+| 1 | 1 | 0   | 0 | 0    |
+| 1 | 1 | 1   | 1 | 1    |
+
+## Karnaugh maps :
+
+Difference (D)
+| BC  | 00 | 01 | 11 | 10 |
+| --- | -  | -- | -- | -- |
+| A=0 | 0  | 1  | 0  | 1  |
+| A=1 | 1  | 0  | 1  | 0  |
+
+Borrow (Bout) 
+| BC  | 00 | 01 | 11 | 10 |
+| --- | -  | -- | -- | -- |
+| A=0 | 0  | 1  | 1  | 1  |
+| A=1 | 0  | 0  | 1  | 0  |
+
+## Result :
+D=A⊕B⊕Bin
+
+Bout​=A′B+Bin(A′+B)
+
+
+
+# 8. Adder Subtactor  (4-bit):
 ```mermaid
-
 
 ```
 
 
 
-# 7. Adder Subtactor  (4-bit):
-```mermaid
+# 11. Comparator :
 
-```
+## Inputs:
+A, B
+## Outputs:
+G,E,L
+
+## Truth Table:
+| A | B | G (A>B) | E (A=B) | L (A<B) |
+| - | - | ------- | ------- | ------- |
+| 0 | 0 | 0       | 1       | 0       |
+| 0 | 1 | 0       | 0       | 1       |
+| 1 | 0 | 1       | 0       | 0       |
+| 1 | 1 | 0       | 1       | 0       |
+
+K-Map (2-variable)
+
+For 
+𝐺 = 𝐴 > 𝐵  
+| B   | 0 | 1 |
+| --- | - | - |
+| A=0 | 0 | 0 |
+| A=1 | 1 | 0 |
+
+For 
+E = 𝐴 == 𝐵  
+| B   | 0 | 1 |
+| --- | - | - |
+| A=0 | 1 | 0 |
+| A=1 | 0 | 1 |
+
+For 
+E = 𝐴 < 𝐵  
+| B   | 0 | 1 |
+| --- | - | - |
+| A=0 | 0 | 1 |
+| A=1 | 0 | 0 |
+
+## Final Comparator Equations:
+
+ G=AB′
+
+ E=A′B′+AB
+
+ L=A′B
+
+
+
+
+
+
+
+
+
+
+
 
 
 
