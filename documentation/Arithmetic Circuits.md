@@ -308,6 +308,30 @@ graph LR
 ```
 
 # 9. Booth Mul :
+```mermaid
+flowchart TD
+
+    A[Start] --> B[Initialize partial to 0 and i to 0]
+
+    B --> C{Is i less than WIDTH}
+
+    C -- No --> Z[Set product equal to partial]
+    Z --> END[End]
+
+    C -- Yes --> D[Read current bit Q_i and previous bit Q_prev]
+
+    D --> E{Check bits Q_i Q_prev}
+
+    E -- 01 --> F[Add multiplicand shifted left by i to partial]
+    E -- 10 --> G[Subtract multiplicand shifted left by i from partial]
+    E -- 00 or 11 --> H[Do nothing]
+
+    F --> I[Increment i by 1]
+    G --> I
+    H --> I
+
+    I --> C
+```
 
 # 10. Wallach Mul :
 
