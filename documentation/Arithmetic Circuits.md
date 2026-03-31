@@ -334,7 +334,27 @@ flowchart TD
 ```
 
 # 10. Wallach Mul :
+```mermaid
+flowchart TD
 
+    A[Start] --> B[Initialize temp_sum to 0 and i to 0]
+
+    B --> C{Is i less than WIDTH}
+
+    C -- No --> Z[Set Product equal to temp_sum]
+    Z --> END[End]
+
+    C -- Yes --> D[Generate partial product PP_i by ANDing A with bit B_i]
+
+    D --> E[Shift PP_i left by i positions]
+
+    E --> F[Add shifted PP_i to temp_sum]
+
+    F --> G[Increment i by 1]
+
+    G --> C
+
+```
 
 # 11. Comparator :
 
