@@ -65,4 +65,6 @@ Y1 = D3 + D2
 
 Y0 = D3 + (D1 · D2')
 
+# 3. Barrel Shifter 
 
+# 4. Look-Up Table
