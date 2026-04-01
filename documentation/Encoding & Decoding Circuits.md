@@ -1,5 +1,7 @@
 # 1. Encoder (4-to-2)
 
+circuit that converts 2ⁿ input lines into n output lines
+
 ## Truth Table (Assume one-hot input) :
 
 | D3 | D2 | D1 | D0 | Y1 | Y0 |
@@ -35,6 +37,8 @@ Y2
 
 
 # 2. Priority Encoder (4-to-2)
+
+ike a normal encoder but assigns priority to higher-order inputs
 
 ## Truth Table (Assume one-hot input) :
 
@@ -73,6 +77,7 @@ Y1 = D3 + D2
 
 # 3. Decoder (2-to-4)
 
+n input bits into 2ⁿ outputs, activating only one output
 
 ## Truth Table :
 
