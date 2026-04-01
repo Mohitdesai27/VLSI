@@ -1,7 +1,11 @@
 # 1.  4-to-1 MUX
 
+Selects one of many input signals and forwards it to a single output based on select lines.
+
 Inputs: I0, I1, I2, I3
+
 Select lines: S1, S0
+
 Output: Y
 
 ## Truth Table : 
@@ -24,8 +28,12 @@ Y= $S_1$ $S_0$ $I_0$  +  $S_1$ $S_0$ $I_1$  +  $S_1$ $S_0$ $I_2$  +  $S_1$ $S_0$
 
 # 2. 1-to-4 DEMUX
 
+Single input and routes it to one of many outputs based on select lines.
+
 Input: D 
+
 Select: S1, S0 
+
 Outputs: Y0, Y1, Y2, Y3
 
 ## Truth Table : 
