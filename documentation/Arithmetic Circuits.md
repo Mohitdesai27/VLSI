@@ -1,5 +1,7 @@
 # 1. Full Adder :
 
+Circuit that adds three 1-bit inputs: A, B, and Cin, producing Sum and Cout.
+
 ## Inputs:
  A, B, Cin
 ## Outputs:
@@ -38,6 +40,21 @@ Cout​=AB+BCin+ACin
 
 
 # 2. Ripple Carry Adder (4-bit):
+
+An n-bit adder formed by cascading full adders; carry ripples from LSB → MSB.
+
+Working:
+Each stage waits for previous carry → serial propagation.
+
+Delay:
+
+$T_{delay}$ ∝ n
+
+## Pros: 
+Simple, low area
+
+## Cons: 
+Slow for large n
 
 ```mermaid
 graph LR
@@ -103,12 +120,23 @@ graph LR
 
 # 3. Carry  look ahead  Adder (4-bit):
 
+Adder that reduces delay by computing carry in parallel using generate/propagate signals.
+
+## Signals:
+
+$G_i ​= A_iB_i​, P_i ​= A_i⊕B_i$​
+
+## Carry:
+
+$C_{i+1} ​= G_i​ + P_i​C_i$​
 ```mermaid
 
 
 ```
 
 # 4. Carry  skip Adder (4-bit):
+
+Improves RCA by allowing carry to “skip” blocks when propagation condition holds.
 
 ```mermaid
 
@@ -188,6 +216,8 @@ graph LR
 
 # 7. Full Subtractor :
 
+Subtracts two bits with borrow input.
+
 ## Inputs:
 A, B, Bin
 ## Outputs:
@@ -227,8 +257,13 @@ D=A⊕B⊕Bin
 Bout​=A′B+Bin(A′+B)
 
 
-
 # 8. Adder Subtactor  (4-bit):
+
+Performs addition or subtraction using same hardware.
+
+Use XOR to invert B when subtracting
+Use Cin = 1 for 2’s complement subtraction
+
 ```mermaid
 graph LR
     subgraph Inputs A
@@ -308,6 +343,18 @@ graph LR
 ```
 
 # 9. Booth Mul :
+
+Signed multiplication algorithm that reduces number of additions using bit-pair recoding.
+
+## Pros:
+
+Efficient for signed numbers
+Reduces operations
+
+## Cons:
+
+Control complexity
+
 ```mermaid
 flowchart TD
 
@@ -334,6 +381,31 @@ flowchart TD
 ```
 
 # 10. Wallach Mul :
+
+Fast multiplier using parallel reduction of partial products via carry-save adders.
+
+## Working:
+
+Generate partial products
+Reduce using CSA tree
+Final addition
+
+## Key Feature:
+
+Parallel reduction → very fast
+
+Delay:
+
+T∝log(n)
+
+## Pros:
+
+High speed
+
+## Cons:
+
+Complex layout
+
 ```mermaid
 flowchart TD
 
@@ -357,6 +429,8 @@ flowchart TD
 ```
 
 # 11. Comparator :
+
+Compares two binary numbers.
 
 ## Inputs:
 A, B
