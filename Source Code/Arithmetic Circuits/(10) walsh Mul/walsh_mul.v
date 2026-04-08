@@ -6,20 +6,21 @@ module walsh_multiplier #(
     output wire [2*WIDTH-1:0] Product
 );
     wire [WIDTH-1:0] PP [WIDTH-1:0];
-    wire [2*WIDTH-1:0] sum [WIDTH-1:0];
-    integer i, j;
 
+    genvar i;
     generate
         for (i = 0; i < WIDTH; i = i + 1) begin : pp_gen
-            assign PP[i] = A & {WIDTH{B[i]}}; 
+            assign PP[i] = A & {WIDTH{B[i]}};
         end
     endgenerate
 
     reg [2*WIDTH-1:0] temp_sum;
+    integer k;
+
     always @(*) begin
-        temp_sum = 0;
-        for (i = 0; i < WIDTH; i = i + 1) begin
-            temp_sum = temp_sum + (PP[i] << i);
+        temp_sum = {2*WIDTH{1'b0}};
+        for (k = 0; k < WIDTH; k = k + 1) begin
+            temp_sum = temp_sum + (PP[k] << k);
         end
     end
 
