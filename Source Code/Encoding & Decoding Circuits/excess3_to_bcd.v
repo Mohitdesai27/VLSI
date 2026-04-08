@@ -8,8 +8,8 @@ module excess3_to_bcd (
     wire Y = excess3[1];
     wire Z = excess3[0];
 
-    assign bcd[3] = W & X;
-    assign bcd[2] = X ^ Y ^ Z;
+    assign bcd[3] = (W & X) | (W & Y & Z);
+    assign bcd[2] = (~X & ~Y) | (~X & ~Z) | (Z & Y & X);
     assign bcd[1] = Y ^ Z;
     assign bcd[0] = ~Z;
 
