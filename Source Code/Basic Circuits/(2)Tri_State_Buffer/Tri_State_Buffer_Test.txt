@@ -1,0 +1,66 @@
+`timescale 1ns/1ps
+
+module tb_tri_state_buffer;
+
+    // Inputs
+    reg A;
+    reg EN;
+
+    // Output
+    wire Y;
+
+    // Expected output (can be 0,1 or Z)
+    reg expected;
+
+    // Instantiate DUT
+    tri_state_buffer uut (
+        .A(A),
+        .EN(EN),
+        .Y(Y)
+    );
+
+    initial begin
+        $dumpfile("tri_state_buffer.vcd");
+        $dumpvars(0, tb_tri_state_buffer);
+
+        $display("A EN | Y | Expected | Status | Comment");
+        $display("----------------------------------------");
+
+        A = 0; EN = 1; #5;
+        expected = 0;
+        $display("%b  %b | %b |    %b     | %s | Enabled → Output = A (0)",
+                 A, EN, Y, expected,
+                 (Y === expected) ? "PASS" : "FAIL");
+
+
+        A = 1; EN = 1; #5;
+        expected = 1;
+        $display("%b  %b | %b |    %b     | %s | Enabled → Output = A (1)",
+                 A, EN, Y, expected,
+                 (Y === expected) ? "PASS" : "FAIL");
+
+        A = 0; EN = 0; #5;
+        $display("%b  %b | %b |    Z     | %s | Disabled → High-Z",
+                 A, EN, Y,
+                 (Y === 1'bz) ? "PASS" : "FAIL");
+
+
+        A = 1; EN = 0; #5;
+        $display("%b  %b | %b |    Z     | %s | Disabled → High-Z",
+                 A, EN, Y,
+                 (Y === 1'bz) ? "PASS" : "FAIL");
+
+
+        $display("\n--- Transition Test ---");
+
+        A = 0; EN = 0; #5;
+        EN = 1; #5;  // Z → valid
+        A = 1; #5;   // change input
+        EN = 0; #5;  // valid → Z
+
+        $display("Transitions checked: Observe waveform for glitches");
+
+        $finish;
+    end
+
+endmodule
