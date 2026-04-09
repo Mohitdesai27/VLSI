@@ -1,0 +1,35 @@
+`timescale 1ns/1ps
+
+module tb_encoder_4to2;
+
+    // Inputs
+    reg [3:0] D;
+
+    // Outputs
+    wire [1:0] Y;
+
+    // Instantiate the DUT
+    encoder_4to2 uut (
+        .D(D),
+        .Y(Y)
+    );
+
+    integer i;
+
+    initial begin
+        $dumpfile("encoder_4to2.vcd");
+        $dumpvars(0, tb_encoder_4to2);
+
+        $display("D    | Y   | Comment");
+        $display("----------------------");
+
+        // Test all 4-bit input combinations (0-15)
+        for (i = 0; i <= 15; i = i + 1) begin
+            D = i; #5;
+            $display("%b | %b | Input=%b -> Encoded output=%b", D, Y, D, Y);
+        end
+
+        $finish;
+    end
+
+endmodule

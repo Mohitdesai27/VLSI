@@ -1,0 +1,35 @@
+`timescale 1ns/1ps
+
+module tb_decoder_2to4;
+
+    // Inputs
+    reg [1:0] A;
+
+    // Outputs
+    wire [3:0] Y;
+
+    // Instantiate the DUT
+    decoder_2to4 uut (
+        .A(A),
+        .Y(Y)
+    );
+
+    integer i;
+
+    initial begin
+        $dumpfile("decoder_2to4.vcd");
+        $dumpvars(0, tb_decoder_2to4);
+
+        $display("A  | Y    | Comment");
+        $display("----------------------");
+
+        // Test all 2-bit input combinations (0-3)
+        for (i = 0; i <= 3; i = i + 1) begin
+            A = i; #5;
+            $display("%b | %b | Input=%b -> Decoded output=%b", A, Y, A, Y);
+        end
+
+        $finish;
+    end
+
+endmodule

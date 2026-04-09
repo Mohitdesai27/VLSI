@@ -1,0 +1,41 @@
+`timescale 1ns/1ps
+
+module tb_BCD_to_7Segment;
+
+    // Inputs
+    reg [3:0] BCD;
+
+    // Outputs
+    wire [6:0] SEG;
+
+    // Instantiate DUT
+    BCD_to_7Segment uut (
+        .BCD(BCD),
+        .SEG(SEG)
+    );
+
+    integer i;
+
+    initial begin
+        $dumpfile("BCD_to_7Segment.vcd");
+        $dumpvars(0, tb_BCD_to_7Segment);
+
+        $display("BCD | SEG[6:0] | Comment");
+        $display("------------------------------");
+
+ 
+        for (i = 0; i <= 9; i = i + 1) begin
+            BCD = i; #5;
+            $display("%0d   | %b | Should display digit %0d", BCD, SEG, i);
+        end
+
+        // Test invalid BCD inputs (10-15)
+        for (i = 10; i <= 15; i = i + 1) begin
+            BCD = i; #5;
+            $display("%0d   | %b | Invalid BCD, behavior undefined", BCD, SEG);
+        end
+
+        $finish;
+    end
+
+endmodule

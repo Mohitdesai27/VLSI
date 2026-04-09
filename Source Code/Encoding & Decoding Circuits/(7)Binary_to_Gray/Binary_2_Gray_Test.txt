@@ -1,0 +1,35 @@
+`timescale 1ns/1ps
+
+module tb_Binary_to_Gray;
+
+    // Inputs
+    reg [3:0] BIN;
+
+    // Outputs
+    wire [3:0] GRAY;
+
+    // Instantiate the DUT
+    Binary_to_Gray uut (
+        .BIN(BIN),
+        .GRAY(GRAY)
+    );
+
+    integer i;
+
+    initial begin
+        $dumpfile("Binary_to_Gray.vcd");
+        $dumpvars(0, tb_Binary_to_Gray);
+
+        $display("BIN  | GRAY  | Comment");
+        $display("------------------------");
+
+        // Test all 4-bit binary inputs (0-15)
+        for (i = 0; i <= 15; i = i + 1) begin
+            BIN = i; #5;
+            $display("%b | %b | Binary=%0d -> Gray=%b", BIN, GRAY, BIN, GRAY);
+        end
+
+        $finish;
+    end
+
+endmodule
