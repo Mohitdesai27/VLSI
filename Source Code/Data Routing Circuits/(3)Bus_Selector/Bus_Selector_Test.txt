@@ -1,0 +1,46 @@
+`timescale 1ns/1ps
+
+module tb_bus_selector;
+
+    // Parameters
+    parameter BUS_WIDTH   = 32;
+    parameter SLICE_WIDTH = 8;
+    localparam NUM_SLICES = BUS_WIDTH / SLICE_WIDTH;
+
+    // Inputs
+    reg [BUS_WIDTH-1:0] bus_in;
+    reg [$clog2(NUM_SLICES)-1:0] sel;
+
+    // Output
+    wire [SLICE_WIDTH-1:0] bus_out;
+
+    // Instantiate DUT
+    bus_selector #(
+        .BUS_WIDTH(BUS_WIDTH),
+        .SLICE_WIDTH(SLICE_WIDTH)
+    ) uut (
+        .bus_in(bus_in),
+        .sel(sel),
+        .bus_out(bus_out)
+    );
+
+    integer i;
+
+    initial begin
+        $dumpfile("bus_selector.vcd");
+        $dumpvars(0, tb_bus_selector);
+
+        $display("SEL | BUS_IN                         | BUS_OUT | COMMENT");
+        $display("-----------------------------------------------------------");
+
+        $display("\n--- Randomized Tests ---");
+        for (integer t = 0; t < 5; t = t + 1) begin
+            bus_in = $random;
+            sel    = $random % NUM_SLICES; #5;
+            $display("SEL=%0d IN=%h OUT=%h | Should match slice %0d", sel, bus_in, bus_out, sel);
+        end
+
+        $finish;
+    end
+
+endmodule
