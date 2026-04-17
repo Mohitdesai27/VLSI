@@ -201,7 +201,7 @@ Q2* = Q2⊕(Q1Q0)
 Q3* ​= Q3​⊕(Q2​Q1​Q0​)(Q3​Q1​)
 
 
-# BCD Counter
+# RING Counter
 
 ## STATE TRANSITION TABLE
 | Present (Q2 Q1 Q0) | Next (Q2⁺ Q1⁺ Q0⁺)                       |
