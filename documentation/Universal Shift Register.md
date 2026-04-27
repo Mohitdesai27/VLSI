@@ -16,6 +16,9 @@
 | 10        | (Q_{i-1}) |
 | 11        | (D_i)     |
 
+
+# 3. Boolian Eqn
+
 Di​=  $\overline{S1}\overline{S0}Qi​  +  \overline{S1}S0Q_{i+1} + S1\overline{S0}Q_{i−1} ​+  S1S0Di$
 
 
