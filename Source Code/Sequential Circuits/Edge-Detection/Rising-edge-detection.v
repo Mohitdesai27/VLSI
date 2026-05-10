@@ -1,0 +1,14 @@
+module rising_edge_detector(
+    input clk,
+    input X,
+    output reg Y
+);
+
+reg Qprev;
+
+always @(posedge clk) begin
+    Y <= X & ~Qprev;
+    Qprev <= X;
+end
+
+endmodule
