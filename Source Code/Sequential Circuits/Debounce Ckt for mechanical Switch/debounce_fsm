@@ -1,0 +1,56 @@
+module debounce_fsm #(
+    parameter COUNT_MAX = 100_000
+)(
+    input clk,
+    input rst,
+    input sw,
+    output reg out
+);
+
+    reg [1:0] state, next_state;
+    reg [31:0] counter;
+    reg done;
+
+    // State encoding
+    localparam S0 = 2'b00; // stable 0
+    localparam S1 = 2'b01; // wait rise
+    localparam S2 = 2'b11; // stable 1
+    localparam S3 = 2'b10; // wait fall
+
+    // counter logic
+    always @(posedge clk or posedge rst) begin
+        if (rst)
+            counter <= 0;
+        else if (state != next_state)
+            counter <= 0;
+        else if (counter < COUNT_MAX)
+            counter <= counter + 1;
+    end
+
+    always @(*) begin
+        done = (counter >= COUNT_MAX);
+
+        case (state)
+            S0: next_state = sw ? (done ? S1 : S0) : S0;
+            S1: next_state = sw ? (done ? S2 : S1) : S0;
+            S2: next_state = sw ? S2 : (done ? S3 : S2);
+            S3: next_state = sw ? S2 : (done ? S0 : S3);
+            default: next_state = S0;
+        endcase
+    end
+
+    always @(posedge clk or posedge rst) begin
+        if (rst)
+            state <= S0;
+        else
+            state <= next_state;
+    end
+
+    always @(posedge clk or posedge rst) begin
+        if (rst)
+            out <= 0;
+        else
+            out <= state[1]; // Q1
+    end
+
+endmodule
